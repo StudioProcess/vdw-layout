@@ -11,12 +11,13 @@ function setup() {
   fill(c);
   noStroke();
   
-  generate(1);
+  generate();
 }
 
 
 let seed = 0;
 let divisionLimit = 18;
+// const divisionSteps = [2,3,4,6,8,9,12,16,18,24,27,36,48];
 
 // chances
 let c_divide = 0.5; // divide a cell further?
@@ -48,7 +49,7 @@ let fillCount = 0;
 let lastSeed = 0;
 
 function generate(seed = 0) {
-  console.log("generating. seed=" + seed);
+  console.log("\ngenerating. seed=" + seed);
   Math.seedrandom(seed);
   lastSeed = seed;
   runCount = 0;
@@ -68,13 +69,11 @@ function generateRandom() {
 }
 
 function runOnCell(left, top, width, height, depth=0) {
-  if (width < baseW/divisionLimit) return;
-  
   runCount++;
   logd(`running on ${Math.floor(left)}, ${Math.floor(top)}, ${Math.floor(width)}, ${Math.floor(height) }`, depth);
   
   let divs = decide(c_twoDivisions) ? 2 : 3; // number of divisions
-  let canDivide = Math.floor(width/divs) >= baseW/divisionLimit;
+  let canDivide = Math.ceil(width/divs) >= Math.floor(baseW/divisionLimit);
   let shouldDivide = decide(c_divide);
   if (runCount == 1) { shouldDivide = true; }
   
@@ -132,7 +131,7 @@ function logd(text, depth=0) {
 }
 
 document.addEventListener('keydown', e => {
-  console.log(e.key, e.keyCode, e);
+  // console.log(e.key, e.keyCode, e);
   
   if (e.key == 'f') { // f .. fullscreen
     if (!document.webkitFullscreenElement) {
