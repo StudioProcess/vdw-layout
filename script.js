@@ -17,7 +17,17 @@ function setup() {
 
 let seed = 0;
 let divisionLimit = 18;
-// const divisionSteps = [2,3,4,6,8,9,12,16,18,24,27,36,48];
+const divisionSteps = [2,3,4,6,8,9,12,16,18,24,27,36,48];
+let divisionStep = 0;
+
+function setDivisionStep(s) {
+  if (s < 0) { s = 0; }
+  else if (s > divisionSteps.length-1) {
+    s = divisionSteps.length-1;
+  }
+  divisionStep = s;
+  divisionLimit = divisionSteps[s];
+}
 
 // chances
 let c_divide = 0.5; // divide a cell further?
@@ -154,12 +164,11 @@ document.addEventListener('keydown', e => {
   }
   
   else if (e.key == 'ArrowUp') {
-    divisionLimit++;
+    setDivisionStep(divisionStep+1);
     regenerate();
   }
   else if (e.key == 'ArrowDown') {
-    divisionLimit--;
-    if (divisionLimit < 2) { divisionLimit = 2; }
+    setDivisionStep(divisionStep-1);
     regenerate();
   }
 });
