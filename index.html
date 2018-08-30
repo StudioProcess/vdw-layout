@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vdw-layout</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.js"></script>
+  <script src="./node_modules/seedrandom/seedrandom.js"></script>
+  <script src="script.js"></script>
+  <style>
+    html, body { 
+      background-color: #505050;
+      position: absolute;
+      left:0; top:0; right:0; bottom:0; 
+    }
+    canvas { 
+      border: 25px solid rgb(235, 88, 47); 
+      background-color: rgb(235, 88, 47);
+    }
+    canvas {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%)
+    }
+    #info {
+      position: fixed;
+      top:0;
+      left:0;
+      z-index: 1;
+      color:white;
+      white-space: pre-wrap;
+      font: 10pt 'system-ui'
+    }
+  </style>
+</head>
+<body>
+  <div id="info"></div>
+</body>
+</html>
