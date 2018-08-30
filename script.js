@@ -7,18 +7,13 @@ let c;
 function setup() {
   c = color(245, 172, 151);
   createCanvas(baseW, baseH);
-  
-  fill(c);
-  noStroke();
-  
-  generate();
+  generate(lastSeed);
 }
 
 
-let seed = 0;
+const divisionSteps = [2,3,4,6,8,9,12,16,18,24,27,36,48,54,64,72,81,96,108,128,144,162,192,216,243,256];
+let divisionStep = 8;
 let divisionLimit = 18;
-const divisionSteps = [2,3,4,6,8,9,12,16,18,24,27,36,48];
-let divisionStep = 0;
 
 function setDivisionStep(s) {
   if (s < 0) { s = 0; }
@@ -149,8 +144,17 @@ document.addEventListener('keydown', e => {
     } else { document.webkitExitFullscreen(); }
   }
   
+  else if (e.key == '0') {
+    generate(0);
+  }
   else if (e.key == ' ') {
     generateRandom();
+  }
+  else if (e.key == 'ArrowLeft') {
+    generate(lastSeed-1);
+  }
+  else if (e.key == 'ArrowRight') {
+    generate(lastSeed+1);
   }
   
   else if (e.key == 'g') {
