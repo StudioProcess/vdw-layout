@@ -34,7 +34,7 @@ let displayMode = 0;
 let showBalls = true;
 let showGridFilled = false;
 let showGridEmpty = false;
-let skipPartial = false;
+let skipPartial = true;
 
 function nextDisplayMode() {
   displayMode = (displayMode + 1) % 5;
