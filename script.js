@@ -1,7 +1,7 @@
 'use strict';
 
-const baseW = 1000;
-const baseH = 500;
+let baseW = 1000;
+let baseH = 500;
 let c;
 
 function setup() {
@@ -135,6 +135,14 @@ function logd(text, depth=0) {
   console.log("   ".repeat(depth) + text);
 }
 
+function fitToWindow() {
+  baseW = document.documentElement.clientWidth;
+  baseH = document.documentElement.clientHeight;
+  resizeCanvas(baseW, baseH);
+  regenerate();
+  console.log(`resizing: ${baseW} x ${baseH}`);
+}
+
 document.addEventListener('keydown', e => {
   // console.log(e.key, e.keyCode, e);
   
@@ -174,5 +182,9 @@ document.addEventListener('keydown', e => {
   else if (e.key == 'ArrowDown') {
     setDivisionStep(divisionStep-1);
     regenerate();
+  }
+  
+  else if (e.key == 't') {
+    fitToWindow();
   }
 });
